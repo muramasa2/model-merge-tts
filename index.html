@@ -1,90 +1,135 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progate</title>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-left">
-        <img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png">
-      </div>
-      <span class="fa fa-bars menu-icon"></span>
-      <div class="header-right">
-        <a href="#">レッスン</a>
-        <a href="#">新規登録</a>
-        <a href="#" class="login">ログイン</a>
-      </div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>MODEL MERGING FOR SPEAKER INTERPOLATION IN SPEECH SYNTHESIS</title>
+
+  </head>
+    
+  <body style="font-family: Helvetica">
+  <!-- <body style="font-family: Palatino, serif"> -->
+    <h2>MODEL MERGING FOR SPEAKER INTERPOLATION IN SPEECH SYNTHESIS</h2>
+      <b>Paper</b>: <a href="">arxiv</a> </br>
+      <b>Authors</b>: Masato Murata, Koichi Miyazaki, Tomoki Koriyama</br>
+      <b>Affiliation</b>: CyberAgent, Inc., Japan<br> </br>
+      
+      <div style="width: 80%">
+      <b>Abstract</b>: 
+      A model merging method in generative tasks, which simply averages parameters from two base models,
+      has attracted attention because of its simpleness and capability to generate intermediate features.
+      In this study, we apply the model-merging method to text-to-speech (TTS) for speaker interpolation, which generates a speaker with an intermediate attribute (i.e., mid-attribute). 
+      This method is easily applicable without additional training, as it utilizes only two single-speaker base models, regardless of the model architecture.
+      To investigate the effect of the base model training strategies, we conduct objective and subjective evaluations of the output of the merged model derived from two base models trained with various training strategies, 
+      such as initialization with shared/individual parameters and optimization from scratch/pretrained models. 
+      Our experimental results show that only the merged model of two models fine-tuned from the same pretrained model (fine-tuning-based merging) can generate speech with mid-attribute speaker characteristics without significant deterioration. 
+      We also found that the parameters of both the merged and base models are distributed in a close position in parameter space, indicating that this is the reason for the success of the model merging speaker interpolation. 
+      Moreover, we investigated the robustness of model merging using diverse base speaker combinations.
     </div>
-  </header>
-  <div class="top-wrapper">
-    <div class="container">
-      <h1>LEARN TO CODE.<br>LEARN TO BE CREATIVE.</h1>
-      <p>Progateはオンラインプログラミング学習サービスです。<br>初心者にもやさしいスライドとレッスンで、ウェブサービスを作りながらプログラミングを学んでいきましょう。</p>
-      <div class="btn-wrapper">
-        <a href="#" class="btn signup">新規登録はこちら</a>
-        <p>or</p>
-        <a href="#" class="btn facebook"><span class="fa fa-facebook"></span>Facebookで登録</a>
-        <a href="#" class="btn twitter"><span class="fa fa-twitter"></span>Twitterで登録</a>
-      </div>
-    </div>
-  </div>
-  <div class="lesson-wrapper">
-    <div class="container">
-      <div class="heading">
-        <h2>Learn Where to Get Started!</h2>
-      </div>
-      <div class="lessons">
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/html.png">
-            <p>HTML & CSS</p>
-          </div>
-          <p class="text-contents">ウェブページの作成に使用される言語です。HTMLとCSSを組み合わせることで、静的なページを作り上げることができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/jQuery.png">
-            <p>jQuery</p>
-          </div>
-          <p class="text-contents">素敵な動きを手軽に実装できるJavaScriptライブラリです。 アニメーション効果をつけたり、Ajax（エイジャックス）を使って外部ファイルを読み込んだりと色々なことができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/ruby.png">
-            <p>Ruby</p>
-          </div>
-          <p class="text-contents">オープンソースの動的なプログラミング言語で、 シンプルさと高い生産性を備えています。大きなWebアプリケーションから小さな日用ツールまで、さまざまなソフトウェアを作ることができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/php.png">
-            <p>PHP</p>
-          </div>
-          <p class="text-contents">HTMLだけではページの内容を変えることはできません。PHPはHTMLにプログラムを埋め込み、それを可能にします。</p>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-  <div class="message-wrapper">
-    <div class="container">
-      <div class="heading">
-        <h2>さぁ、あなたもProgateでプログラミングを学んでみませんか?</h2>
-        <h3>Let's learn to code, learn to be creative!</h3>
-      </div>
-      <span class="btn message">さっそく開発する</span>
-    </div>
-  </div>
-  <footer>
-    <div class="container">
-      <img src="https://prog-8.com/images/html/advanced/footer_logo.png">
-      <p>Learn to Code, Learn to be Creative.</p>
-    </div>
-  </footer>
-</body>
+
+  	<br> </br>
+    <h1> Speech Samples </h1>
+
+    <h3> Evaluations on base model training strategies: LJSpeech - HiFiTTS(Speaker ID=92)</h3>
+    <b>Training method</b>: </br>
+    <ul>
+        <li> Scratch: scrach training from random initialization </br>
+        <li> Fine-tune: fine-tuning from multi-speaker pretrained model </br>
+    </ul>   
+        <b>Random seed</b>:</br>
+        <ul>
+            <li> different: using different random seed initialization </br>
+            <li> same: using same random seed initialization </br>
+    </ul>
+    <table>
+      <table>
+        <tbody>
+          <thead>
+            <tr>
+              <th align="middle"></th>
+              <th align="middle">Scratch/different</th>
+              <th align="middle">Scratch/same</th>
+              <th align="middle">Fine-tune/different</th>
+              <th align="middle">Fine-tune/same</th>
+           </tr>
+          </thead>
+          <tr>
+            <th align="right">&nbsp;&nbsp;0.0</th>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_diff/0_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_same/0_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_diff/0_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_same/0_0.wav" type="audio/wav"></audio></td>
+          </tr>
+          <tr>
+            <th align="right">&nbsp;&nbsp;0.5</th>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_diff/0_5.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_same/0_5.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_diff/0_5.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_same/0_5.wav" type="audio/wav"></audio></td>
+          </tr>
+          <tr>
+            <th align="right">&nbsp;&nbsp;1.0</th>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_diff/1_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_same/1_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_diff/1_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_same/1_0.wav" type="audio/wav"></audio></td>
+          </tr>
+        </tbody>
+      </table>
+    <br> </br>
+    <h3> Evaluations on speaker combinations: VCTK</h3>
+
+    <table>
+      <tbody>
+        <thead>
+          <tr>
+            <th align="middle"></th>
+            <th align="middle">p228(female) - p236(female)</th>
+            <th align="middle">p226(male) - p241(male)</th>
+            <th align="middle">p228(male) - p241(female)</th>
+          </tr>
+        </thead>
+        <tr>
+          <th align="right">&nbsp;&nbsp;0.0</th>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_0.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_0.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_0.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <th align="right">&nbsp;&nbsp;0.2</th>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_2.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_2.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_2.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <th align="right">&nbsp;&nbsp;0.4</th>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_4.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_4.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_4.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <th align="right">&nbsp;&nbsp;0.5</th>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_5.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_5.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_5.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <th align="right">&nbsp;&nbsp;0.6</th>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_6.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_6.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_6.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <th align="right">&nbsp;&nbsp;0.8</th>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_8.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_8.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_8.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <th align="right">&nbsp;&nbsp;1.0</th>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/1_0.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/1_0.wav" type="audio/wav"></audio></td>
+          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/1_0.wav" type="audio/wav"></audio></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 </html>
