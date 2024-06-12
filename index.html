@@ -1,135 +1,371 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
+<html lang="en">
 
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>MODEL MERGING FOR SPEAKER INTERPOLATION IN SPEECH SYNTHESIS</title>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  </head>
-    
-  <body style="font-family: Helvetica">
-  <!-- <body style="font-family: Palatino, serif"> -->
-    <h2>MODEL MERGING FOR SPEAKER INTERPOLATION IN SPEECH SYNTHESIS</h2>
-      <!-- <b>Paper</b>: <a href="">arxiv</a> </br> -->
-      <b>Authors</b>: Masato Murata, Koichi Miyazaki, Tomoki Koriyama</br>
-      <b>Affiliation</b>: CyberAgent, Inc., Japan<br> </br>
-      
-      <div style="width: 80%">
-      <b>Abstract</b>: 
-      A model merging method in generative tasks, which simply averages parameters from two base models,
-      has attracted attention because of its simpleness and capability to generate intermediate features.
-      In this study, we apply the model-merging method to text-to-speech (TTS) for speaker interpolation, which generates a speaker with an intermediate attribute (i.e., mid-attribute). 
-      This method is easily applicable without additional training, as it utilizes only two single-speaker base models, regardless of the model architecture.
-      To investigate the effect of the base model training strategies, we conduct objective and subjective evaluations of the output of the merged model derived from two base models trained with various training strategies, 
-      such as initialization with shared/individual parameters and optimization from scratch/pretrained models. 
-      Our experimental results show that only the merged model of two models fine-tuned from the same pretrained model (fine-tuning-based merging) can generate speech with mid-attribute speaker characteristics without significant deterioration. 
-      We also found that the parameters of both the merged and base models are distributed in a close position in parameter space, indicating that this is the reason for the success of the model merging speaker interpolation. 
-      Moreover, we investigated the robustness of model merging using diverse base speaker combinations.
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Model_merge_attribute_interpolation</title>
+
+</head>
+
+<body>
+
+    <!-- Title -->
+    <div class="container" style="max-width:1200px;">
+        <div class='row mt-5 mb-3'>
+            <div class='col text-center'>
+                <p class="h2 font-weight-normal">An Attribute Interpolation Method in Speech Synthesis by Model Merging <br></p>
+            </div>
+        </div>
     </div>
+    <div class="container" style="max-width:1100px;">
+        <div class='col' style='padding-left: 35px;padding-right: 35px'>
+            <div class='row text-center'>
+                <div class='col'>
+                    <p class='h2 font-weight-bold '>Audio Samples</p>
+                </div>
+            </div>
 
-  	<br> </br>
-    <h1> Speech Samples </h1>
 
-    <h3> Evaluations on base model training strategies: LJSpeech - HiFiTTS(Speaker ID=92)</h3>
-    <b>Training method</b>: </br>
-    <ul>
-        <li> Scratch: scrach training from random initialization </br>
-        <li> Fine-tune: fine-tuning from multi-speaker pretrained model </br>
-    </ul>   
-        <b>Random seed</b>:</br>
-        <ul>
-            <li> different: using different random seed initialization </br>
-            <li> same: using same random seed initialization </br>
-    </ul>
-    <table>
-      <table>
-        <tbody>
-          <thead>
-            <tr>
-              <th align="middle"></th>
-              <th align="middle">Scratch/different</th>
-              <th align="middle">Scratch/same</th>
-              <th align="middle">Fine-tune/different</th>
-              <th align="middle">Fine-tune/same</th>
-           </tr>
-          </thead>
-          <tr>
-            <th align="right">&nbsp;&nbsp;0.0</th>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_diff/0_0.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_same/0_0.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_diff/0_0.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_same/0_0.wav" type="audio/wav"></audio></td>
-          </tr>
-          <tr>
-            <th align="right">&nbsp;&nbsp;0.5</th>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_diff/0_5.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_same/0_5.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_diff/0_5.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_same/0_5.wav" type="audio/wav"></audio></td>
-          </tr>
-          <tr>
-            <th align="right">&nbsp;&nbsp;1.0</th>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_diff/1_0.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/scratch_same/1_0.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_diff/1_0.wav" type="audio/wav"></audio></td>
-            <td><audio controls style="width: 250px; height: 50px"><source src="samples/lj_hifi/finetune_same/1_0.wav" type="audio/wav"></audio></td>
-          </tr>
-        </tbody>
-      </table>
-    <br> </br>
-    <h3> Evaluations on speaker combinations: VCTK</h3>
+            <div class='row' style='margin-top: 60px;margin-bottom: 20px'>
+                <p class='h3 font-weight-normal'>4.2. Speaker Generation </p><br>
+            </div>
+            <div class='col' style='padding-left: 35px;padding-right: 35px'>
+                <div style='flex: 1;'>
+                <div class='row' style='margin-top: 60px;margin-bottom: 20px'>
+                    <p class='h4 font-weight-normal'>Female-Female </p><br>
+                </div>
+                <table border="1">
+                    <tr>
+                        <th>speaker combination (A-B)</th>
+                        <th>base speaekr A</th>
+                        <th>interpolation A-B</th>
+                        <th>base speaker B</th>
+                    </tr>
+                    <tr>
+                        <td>p225-p229</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p225-p229/p225_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p225-p229/alpha_0.5_p225_p229_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p225-p229/p229_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>                   <tr>
+                        <td>p225-p231</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p225-p231/p225_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p225-p231/alpha_0.5_p225_p231_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p225-p231/p231_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>                   <tr>
+                        <td>p228-p231</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p228-p231/p228_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p228-p231/alpha_0.5_p228_p231_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/F_F/p228-p231/p231_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>
+                </table>
+            </div>
+            <div style='flex: 1;'>
+                <div class='row' style='margin-top: 60px;margin-bottom: 20px'>
+                    <p class='h4 font-weight-normal'>Male-Male </p><br>
+                </div>
+                <table border="1">
+                    <tr>
+                        <th>speaker combination (A-B)</th>
+                        <th>base speaekr A</th>
+                        <th>interpolation A-B</th>
+                        <th>base speaker B</th>
+                    </tr>   
+                    <tr>
+                        <td>p226-p237</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p226-p237/p226_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p226-p237/alpha_0.5_p226_p237_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p226-p237/p237_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr> 
+                    <tr>
+                        <td>p226-p241</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p226-p241/p226_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p226-p241/alpha_0.5_p226_p241_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p226-p241/p241_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>                   
+                    <tr>
+                        <td>p232-p237</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p232-p237/p232_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p232-p237/alpha_0.5_p232_p237_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_M/p232-p237/p237_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>           
+                </table>
+            </div>
+            <div style='flex: 1;'>
+                <div class='row' style='margin-top: 60px;margin-bottom: 20px'>
+                    <p class='h4 font-weight-normal'>Male-Female </p><br>
+                </div>
+                <table border="1">
+                    <tr>
+                        <th>speaker combination (A-B)</th>
+                        <th>base speaekr A</th>
+                        <th>interpolation A-B</th>
+                        <th>base speaker B</th>
+                    </tr>
+                    <tr>
+                        <td>p227-p228</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p227-p228/p227_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p227-p228/alpha_0.5_p227_p228_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p227-p228/p228_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>                      <tr>
+                        <td>p237-p225</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p237-p225/p237_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p237-p225/alpha_0.5_p237_p225_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p237-p225/p225_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>                     <tr>
+                        <td>p226-p228(Failed)</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p226-p228/p226_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p226-p228/alpha_0.5_p226_p228_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Speaker_generation/M_F/p226-p228/p228_p243_391.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
 
-    <table>
-      <tbody>
-        <thead>
-          <tr>
-            <th align="middle"></th>
-            <th align="middle">p228(female) - p236(female)</th>
-            <th align="middle">p226(male) - p241(male)</th>
-            <th align="middle">p228(male) - p241(female)</th>
-          </tr>
-        </thead>
-        <tr>
-          <th align="right">&nbsp;&nbsp;0.0</th>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_0.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_0.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_0.wav" type="audio/wav"></audio></td>
-        </tr>
-        <tr>
-          <th align="right">&nbsp;&nbsp;0.2</th>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_2.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_2.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_2.wav" type="audio/wav"></audio></td>
-        </tr>
-        <tr>
-          <th align="right">&nbsp;&nbsp;0.4</th>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_4.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_4.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_4.wav" type="audio/wav"></audio></td>
-        </tr>
-        <tr>
-          <th align="right">&nbsp;&nbsp;0.5</th>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_5.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_5.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_5.wav" type="audio/wav"></audio></td>
-        </tr>
-        <tr>
-          <th align="right">&nbsp;&nbsp;0.6</th>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_6.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_6.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_6.wav" type="audio/wav"></audio></td>
-        </tr>
-        <tr>
-          <th align="right">&nbsp;&nbsp;0.8</th>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/0_8.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/0_8.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/0_8.wav" type="audio/wav"></audio></td>
-        </tr>
-        <tr>
-          <th align="right">&nbsp;&nbsp;1.0</th>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p236/1_0.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p226_p241/1_0.wav" type="audio/wav"></audio></td>
-          <td><audio controls style="width: 250px; height: 50px"><source src="samples/vctk/p228_p241/1_0.wav" type="audio/wav"></audio></td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
+            <div class='row' style='margin-top: 60px;margin-bottom: 20px'>
+                <p class='h3 font-weight-normal'>4.3. Emotion Intensity Control </p><br>
+            </div>
+            <div class='col' style='padding-left: 35px;padding-right: 35px'>
+                <div style='flex: 1;'>
+                <table border="1" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <th>emotion style</th>
+                        <th>alpha=0(Neutral)</th>
+                        <th>alpha=0.25</th>
+                        <th>alpha=0.5</th>
+                        <th>alpha=0.75</th>
+                        <th>alpha=1.0(Emotional)</th>
+                    </tr>
+                    <tr>
+                        <td>Angry</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Angry/1.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Angry/2.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Angry/3.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Angry/4.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Angry/5.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>
+                    <tr>
+                        <td>Happy</td>                        
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Happy/1.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Happy/2.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Happy/3.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Happy/4.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Happy/5.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>
+                    <tr>
+                        <td>Sad</td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Sad/1.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Sad/2.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Sad/3.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Sad/4.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Sad/5.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>
+                                        <tr>
+                        <td>Surprise</td>                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Surprise/1.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Surprise/2.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Surprise/3.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Surprise/4.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                        <td><audio controls controlsList="nodownload"
+                            style='display: inline-block; align-self: center; padding-top:8px; padding-bottom:8px; width: 200px;'>
+                            <source src="./Emotion_intensity_contol/Surprise/5.wav" class="img-fluid rounded mx-auto d-block"
+                                alt="temp">
+                        </audio></td>
+                    </tr>
+                    </table>
+                </div>
+        </div>
+    </body>
+    </html>
+</body>
+
 </html>
